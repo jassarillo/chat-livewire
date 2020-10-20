@@ -1,8 +1,8 @@
 <div class="">
 
     <a href="/" style="color: black;">
-        <h5 class="pb-0 mb-0"><strong>Live Chat with</strong></h5>
-        <h2 class="pt-0 mt-0"><strong>Laravel7 + LiveWire + Pusher</strong></h2>
+        <h5 class="pb-0 mb-0"><strong>Dispensario México</strong></h5>
+        <h2 class="pt-0 mt-0"><strong>Bienvenido!</strong></h2>
     </a>
 
     <!-- El Usuario -->
@@ -18,7 +18,7 @@
         @error("usuario") 
             <small class="text-danger">{{ $message }}</small> 
         @else 
-            <small class="text-muted">Tu nombre: {{$usuario}}</small> 
+            <!--<small class="text-muted">Tu nombre: {{$usuario}}</small> -->
         @enderror
     </div>
 
