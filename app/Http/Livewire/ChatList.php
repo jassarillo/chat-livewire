@@ -15,7 +15,9 @@ class ChatList extends Component
     public function mount()
     {
         $ultimoId = 0;
-        $this->mensajes = [];                       
+        $smsgetlist =\App\Chat::orderBy("created_at", "desc")->get();
+        //dd($smsgetlist);
+        $this->mensajes = $smsgetlist;                       
         
         $this->usuario = request()->query('usuario', $this->usuario) ?? "";                   
     }
@@ -31,12 +33,12 @@ class ChatList extends Component
     }
 
     public function actualizarMensajes($data)
-    {                
+    {              
         if($this->usuario != "")
         {
             // El contenido de la Push
             //$data = \json_decode(\json_encode($data));
-            
+            /*
             $mensajes = \App\Chat::orderBy("created_at", "desc")->get();
             //$this->mensajes = [];            
 
@@ -53,7 +55,9 @@ class ChatList extends Component
                         "recibido" => ($mensaje->usuario != $this->usuario),
                         "fecha" => $mensaje->created_at->diffForHumans()
                     ];
-    
+
+                    //dd($this->mensajes->items);
+                    $this->mensajes = \App\Chat::orderBy("created_at", "desc")->get();
                     array_unshift($this->mensajes, $item);                
                     //array_push($this->mensajes, $item);                
                 }
@@ -64,11 +68,15 @@ class ChatList extends Component
             {
                 array_pop($this->mensajes);
             }
+            */
+             $this->mensajes = \App\Chat::orderBy("created_at", "desc")->get();
         }
         else
         {            
             $this->emit('solicitaUsuario');
         }
+        
+       
     }
 
     public function resetMensajes()

@@ -6,16 +6,25 @@
         <div class="card-body">
             @foreach($mensajes as $mensaje)        
                 <div>
+
+
                     
-                    @if($mensaje["recibido"])
+                    @if($mensaje["usuario"]== "Julio")
                         <div class="alert alert-warning" style="margin-right: 50px;">
                             <strong>{{$mensaje["usuario"]}}</strong><small class="float-right">{{$mensaje["fecha"]}}</small>
-                            <br><span class="text-muted">{{$mensaje["mensaje"]}}</span>
+                            <br><span class="text-muted">{{$mensaje["mensaje"]}}  
+                                -----
+                                <?php echo $mensaje["usuaro"];?>
+                                    
+                                </span>
                         </div>
                     @else
                         <div class="alert alert-success" style="margin-left: 50px;">
                             <strong>{{$mensaje["usuario"]}}</strong><small class="float-right">{{$mensaje["fecha"]}}</small>
-                            <br><span class="text-muted">{{$mensaje["mensaje"]}}</span>
+                            <br><span class="text-muted">{{$mensaje["mensaje"]}}  
+                                -----
+                                <?php echo $mensaje["usuario"];?>
+                                    </span>
                         </div>
                     @endif
                     
