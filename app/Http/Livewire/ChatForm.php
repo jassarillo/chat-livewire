@@ -9,7 +9,7 @@ class ChatForm extends Component
 {
     // Estas propiedades son publicas
     // y se pueden utilizar directamente desde la vista
-    public $usuario;
+    public $usuario = "Julio";
     public $mensaje;
 
     // Generar datos para pruebas
@@ -28,13 +28,15 @@ class ChatForm extends Component
     {                
         // Instanciamos Faker
         $this->faker = \Faker\Factory::create();       
-
+        //dd($this->faker->name);
         // Obtenemos el valor de usuario de la barra de direcciones
         // si no existe, generamos uno con Faker
+        //$varN= request()->query('usuario', $this->usuario);
+        //dd($varN);
         $this->usuario = request()->query('usuario', $this->usuario) ?? $this->faker->name;                         
 
         // Generamos el primer texto de prueba
-        $this->mensaje = $this->faker->realtext(20);
+        $this->mensaje = "";//$this->faker->realtext(20);
     }
     
     // Cuando el otro componente nos solicitan el usuario    
@@ -73,10 +75,11 @@ class ChatForm extends Component
             "usuario" => $this->usuario,
             "mensaje" => $this->mensaje
         ]);
-        
+        //dd(3);
         // Generamos el evento para Pusher
         // Enviamos en la "push" el usuario y mensaje (aunque en este ejemplo no lo utilizamos)
         // pero nos vale para comprobar en PusherDebug (y por consola) lo que llega...
+        
         event(new \App\Events\NuevoMensaje($this->usuario, $this->mensaje));
         
         // Este evento es para que lo reciba el componente
@@ -84,8 +87,8 @@ class ChatForm extends Component
         $this->emit('enviadoOK', $this->mensaje);
         
         // Creamos un nuevo texto aleatorio (para el próximo mensaje)
-        $this->faker = \Faker\Factory::create();       
-        $this->mensaje = $this->faker->realtext(20);
+        //$this->faker = \Faker\Factory::create();       
+        $this->mensaje = "";//$this->faker->realtext(20);
     
     }    
 
